@@ -1,10 +1,11 @@
 import { type } from 'os';
 import { timestamp } from 'rxjs';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-
+import {v4 as uuidv4} from 'uuid';
 @Entity('product_post')
+
 export class ProductPostEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: number;
 
   @Column({ default: '' })

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { from, Observable } from 'rxjs';
-import { Repository, UpdateResult } from 'typeorm';
+import { DeleteResult, Repository, UpdateResult } from 'typeorm';
 import { ProductPost } from '../models/product.entity';
 //import { Produ } from '../models/product.entity'
 import {ProductPostEntity } from '../models/product.interface'
@@ -21,5 +21,11 @@ export class ProductService {
     }
     updateData(id:number,productPost:ProductPost):Observable<UpdateResult>{
         return from(this.productPostEntity.update(id,productPost))
+    }
+    updateSomeData(id:number,productPost:ProductPost):Observable<UpdateResult>{
+        return from(this.productPostEntity.update(id,productPost))
+    }
+    DeleteData(id:number):Observable<DeleteResult>{
+        return from(this.productPostEntity.delete(id))
     }
 }

@@ -10,11 +10,11 @@ import { ProductModule } from './product/product.module';
     ConfigModule.forRoot({isGlobal:true}),
     TypeOrmModule.forRoot({
       type:'postgres',
-      host:process.env.POSTGRES_HOST,
-      port:parseInt(<string>process.env.POSTGRES_PORT),
-      username:process.env.POSTGRES_USERNAME,
-      password:process.env.POSTGRES_PASSWORD,
-      database:process.env.POSTGRES_DATABASE,
+      host:process.env.DB_HOST,
+      port:parseInt(<string>process.env.DB_PORT),
+      username:process.env.DB_USERNAME,
+      password:process.env.DB_PASSWORD,
+      database:process.env.DB_NAME,
       autoLoadEntities:true,
       synchronize:true
     }),
