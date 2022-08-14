@@ -1,7 +1,8 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post, Put } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { DeleteResult, UpdateResult } from 'typeorm';
-import { ProductPost } from '../models/product.entity';
+import {} from '../models/product.entity';
+import { ProductPost } from '../models/product.interface';
 // import { ProductPost } from '../models/product.entity';
 //import {} from '../models/product.interface'
 import { ProductService } from '../services/product.service';
@@ -16,6 +17,10 @@ export class ProductController {
   @Get('/allData')
   findPost(): Observable<ProductPost[]> {
     return this.ProductService.findAllPost();
+  }
+  @Get(':id')
+  findPostId(@Param('id') id:number):Observable<ProductPost>{
+    return this.ProductService.findById(id);
   }
   @Put(':id')
   updatePost(
