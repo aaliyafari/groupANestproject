@@ -32,8 +32,8 @@ export class ProductPostEntity {
   @Column({default:''})
   productName: string;
 
-  @Column({ default: '' })
-  price: string;
+  @Column({type:"int"})
+  price:number;
 
   @Column({ type:'enum',enum:ProductData,default:null})
   stock:ProductData;

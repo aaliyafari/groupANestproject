@@ -25,7 +25,6 @@ export class ProductService {
     findById(id:number):Observable<ProductPost>{
         return from(this.ProductPostRepository.findOneBy({id}))
     }
-    
     // UPDATE THE WHOLE DATA:
     updateData(id:number,feedPost:ProductPost):Observable<UpdateResult>{
         return from(this.ProductPostRepository.update(id,feedPost))
