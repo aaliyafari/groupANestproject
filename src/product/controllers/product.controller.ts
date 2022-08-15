@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpStatus, Param, ParseIntPipe, ParseUUIDPipe, Patch, Post, Put } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { DeleteResult, UpdateResult } from 'typeorm';
 import {} from '../models/product.entity';
@@ -19,22 +19,22 @@ export class ProductController {
     return this.ProductService.findAllPost();
   }
   @Get(':id')
-  findPostId(@Param('id') id:number):Observable<ProductPost>{
+  findPostId(@Param('id',new ParseUUIDPipe({errorHttpStatusCode:HttpStatus.NOT_ACCEPTABLE})) id:number):Observable<ProductPost>{
     return this.ProductService.findById(id);
   }
   @Put(':id')
   updatePost(
-    @Param('id') id: number,
+    @Param('id',new ParseUUIDPipe({errorHttpStatusCode:HttpStatus.NOT_ACCEPTABLE})) id: number,
     @Body() productPost: ProductPost,
   ): Observable<UpdateResult> {
     return this.ProductService.updateData(id, productPost);
   }
   @Patch(':id')
-    updateSomeData(@Param('id')id:number,@Body()feedPost:ProductPost):Observable<UpdateResult>{
+    updateSomeData(@Param('id',new ParseUUIDPipe({errorHttpStatusCode:HttpStatus.NOT_ACCEPTABLE}))id:number,@Body()feedPost:ProductPost):Observable<UpdateResult>{
         return this.ProductService.updateSomeData(id,feedPost)
     }
     @Delete(':id')
-    deletePost(@Param('id')id:number):Observable<DeleteResult>{
+    deletePost(@Param('id',new ParseUUIDPipe({errorHttpStatusCode:HttpStatus.NOT_ACCEPTABLE}))id:number):Observable<DeleteResult>{
         return this.ProductService.DeleteData(id)
     }
 }
