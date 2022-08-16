@@ -18,5 +18,16 @@ export class UsersService {
       getUsers() {
         return this.userRepository.find();
       }
-      
+
+      findUsersById(id: number) {
+        return this.userRepository.findOneBy({id})
+      }
+      delete(id: number){
+        this.userRepository.delete(id);
+      }
+
+      update(usertoUpdate){
+        this.userRepository.update(usertoUpdate.id,usertoUpdate);
+    }
+
     }
