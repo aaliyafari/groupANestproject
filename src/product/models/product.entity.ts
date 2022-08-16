@@ -32,7 +32,7 @@ export class ProductPostEntity {
   @Column({default:''})
   productName: string;
 
-  @Column({type:"int"})
+  @Column({type:'bigint',default:null})
   price:number;
 
   @Column({ type:'enum',enum:ProductData,default:null})
