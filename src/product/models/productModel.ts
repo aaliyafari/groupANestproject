@@ -1,4 +1,5 @@
-import { IsInt, IsNotEmpty, IsString, } from "class-validator";
+import { IsEnum, IsInt, IsNotEmpty, IsString, } from "class-validator";
+import { ProductData, ProductSize } from "./product.entity";
 
 
 export class CreateUserModel{
@@ -9,5 +10,16 @@ export class CreateUserModel{
     @IsNotEmpty()
     @IsInt()
     price:number;
+
+    @IsNotEmpty()
+    @IsEnum(ProductData)
+    stock:ProductData;
+
+    @IsNotEmpty()
+    @IsEnum(ProductSize)
+    size:ProductSize;
+
+    @IsNotEmpty()
+    image:string;
 }
 
