@@ -24,4 +24,8 @@ export class StudentController {
   getAllStudentData(): Observable<StudentData[]> {
     return this.studentService.getAllStudents();
   }
+  @Get(':id')
+  getStudentByID(@Param('id') id: number) {
+    return this.studentService.findStudentsById(id);
+  }
 }

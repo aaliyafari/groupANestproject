@@ -19,4 +19,7 @@ export class StudentService {
   getAllStudents() {
     return from(this.StudentDataRepository.find());
   }
+  findStudentsById(id: number): Observable<StudentDataEntity> {
+    return from(this.StudentDataRepository.findOneBy({ id }));
+  }
 }
