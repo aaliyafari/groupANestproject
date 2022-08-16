@@ -11,6 +11,7 @@ export class StudentDataEntity {
   @Column({ default: '' })
   lastname: string;
 
+  // @Column({ type: 'bigint', default: null })
   @Column({ type: 'int' })
   mobile: number;
 
