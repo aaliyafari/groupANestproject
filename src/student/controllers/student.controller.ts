@@ -28,4 +28,12 @@ export class StudentController {
   getStudentByID(@Param('id') id: number) {
     return this.studentService.findStudentsById(id);
   }
+  s
+  @Put(':id')
+  updateAllStudent(
+    @Param('id') id: number,
+    @Body() studentData: StudentData,
+  ): Observable<UpdateResult> {
+    return this.studentService.updateStudentRecord(id, studentData);
+  }
 }

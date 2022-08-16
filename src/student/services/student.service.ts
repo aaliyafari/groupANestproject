@@ -22,4 +22,11 @@ export class StudentService {
   findStudentsById(id: number): Observable<StudentDataEntity> {
     return from(this.StudentDataRepository.findOneBy({ id }));
   }
+
+  updateStudentRecord(
+    id: number,
+    student_Data: StudentData,
+  ): Observable<UpdateResult> {
+    return from(this.StudentDataRepository.update(id, student_Data));
+  }
 }
