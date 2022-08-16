@@ -19,14 +19,22 @@ export class StudentService {
   getAllStudents() {
     return from(this.StudentDataRepository.find());
   }
+
+  // find students by uuid
   findStudentsById(id: number): Observable<StudentDataEntity> {
     return from(this.StudentDataRepository.findOneBy({ id }));
   }
 
+  // update student by ID
   updateStudentRecord(
     id: number,
     student_Data: StudentData,
   ): Observable<UpdateResult> {
     return from(this.StudentDataRepository.update(id, student_Data));
+  }
+
+  //delete student by id
+  deleteStudentRecord(id: number): Observable<DeleteResult> {
+    return from(this.StudentDataRepository.delete(id));
   }
 }
