@@ -1,11 +1,11 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-
+import { StudentData } from '../models/student.interface';
 @Entity('student_data')
-export class StudentDataEntity {
+export class StudentDataEntity implements StudentData {
   @PrimaryGeneratedColumn('uuid')
   id: number;
 
-  @Column({ default: '' })
+  @Column({ default: '' }) 
   firstname: string;
 
   @Column({ default: '' })
