@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import {
+ import {
   Body,
   Controller,
   Post,
@@ -23,7 +23,7 @@ export class EmpCrudController {
   create(@Body() post: EmpCrud): Observable<EmpCrud> {
     return this.empService.createPost(post);
   }
-  @Get()
+
   @Get()
   getAllEmployeeData(): Observable<EmpCrud[]> {
     return this.empService.getEmployeeData();
