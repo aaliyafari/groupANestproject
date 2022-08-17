@@ -26,12 +26,6 @@ export class UsersService {
         this.userRepository.delete(id);
       }
 
-      // update(usertoUpdate){
-      //   this.userRepository.update(usertoUpdate.id,usertoUpdate);
-      //  }
-      //  updateUser(id, userRepository) {
-      //   return this.userRepository[id]=userRepository;
-      //  }
 
        async updateUser(id: number, post: CreateUserDto) {
         await this.userRepository.update(id, post);
@@ -40,4 +34,12 @@ export class UsersService {
           return updatedUser;
         }
     }
+
+    async updateAllUser(id: number, post: CreateUserDto) {
+      await this.userRepository.update(id, post);
+      const updatedAllUser = await this.userRepository.findOneBy({id});
+      if (updatedAllUser) {
+        return updatedAllUser;
+      }
+  }
   }
