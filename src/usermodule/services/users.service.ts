@@ -18,5 +18,26 @@ export class UsersService {
       getUsers() {
         return this.userRepository.find();
       }
-      
+
+      findUsersById(id: number) {
+        return this.userRepository.findOneBy({id})
+      }
+      delete(id: number){
+        this.userRepository.delete(id);
+      }
+
+      // update(usertoUpdate){
+      //   this.userRepository.update(usertoUpdate.id,usertoUpdate);
+      //  }
+      //  updateUser(id, userRepository) {
+      //   return this.userRepository[id]=userRepository;
+      //  }
+
+       async updateUser(id: number, post: CreateUserDto) {
+        await this.userRepository.update(id, post);
+        const updatedUser = await this.userRepository.findOneBy({id});
+        if (updatedUser) {
+          return updatedUser;
+        }
     }
+  }

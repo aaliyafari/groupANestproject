@@ -1,10 +1,13 @@
 import {
     Body,
     Controller,
+    Delete,
     Get,
     Param,
     ParseIntPipe,
+    Patch,
     Post,
+    Put,
     UsePipes,
     ValidationPipe,
     } from '@nestjs/common';
@@ -20,14 +23,28 @@ import {
         return this.userService.getUsers();
       }
       
-    //   @Get('id/:id')
-    //   findUsersById(@Param('id', ParseIntPipe) id: number) {
-    //     return this.userService.findUsersById(id);
-    //   }
+      @Get(':id')
+      findUsersById(@Param('id', ParseIntPipe) id: number) {
+        return this.userService.findUsersById(id);
+      }
       
       @Post('create')
       @UsePipes(ValidationPipe)
       createUsers(@Body() createUserDto: CreateUserDto) {
         return this.userService.createUser(createUserDto);
+      }
+
+      @Delete('delete/:id')
+      deleteUser(@Param('id') id) {
+	     return this.userService.delete(id);
+      }
+      
+      @Patch(':id')
+      updateUser(@Param('id') id: any, @Body() createUserDto) {
+        return this.userService.updateUser(+id, createUserDto);
+      }
+      @Put(':id')
+      async updatePost(@Param('id') id: any, @Body() post: CreateUserDto) {
+        return this.userService.updateUser(Number(id), post);
       }
     }
