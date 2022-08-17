@@ -18,5 +18,28 @@ export class UsersService {
       getUsers() {
         return this.userRepository.find();
       }
-      
+
+      findUsersById(id: number) {
+        return this.userRepository.findOneBy({id})
+      }
+      delete(id: number){
+        this.userRepository.delete(id);
+      }
+
+
+       async updateUser(id: number, post: CreateUserDto) {
+        await this.userRepository.update(id, post);
+        const updatedUser = await this.userRepository.findOneBy({id});
+        if (updatedUser) {
+          return updatedUser;
+        }
     }
+
+    async updateAllUser(id: number, post: CreateUserDto) {
+      await this.userRepository.update(id, post);
+      const updatedAllUser = await this.userRepository.findOneBy({id});
+      if (updatedAllUser) {
+        return updatedAllUser;
+      }
+  }
+  }
