@@ -35,7 +35,7 @@ export class ProductController {
     return this.ProductService.updateData(id, productPost);
   }
   @Patch(':id')
-    updateSomeData(@Param('id',new ParseUUIDPipe({errorHttpStatusCode:HttpStatus.NOT_ACCEPTABLE}))id:number,@Body()feedPost:ProductPost):Observable<UpdateResult>{
+    updateSomeData(@Param('id',new ParseUUIDPipe({errorHttpStatusCode:HttpStatus.NOT_ACCEPTABLE}))id:number,@Body()feedPost:CreateUserModel):Observable<UpdateResult>{
         return this.ProductService.updateSomeData(id,feedPost)
     }
     @Delete(':id')
