@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, HttpStatus, Param, ParseIntPipe, ParseUUIDPipe, Patch, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpStatus, Param, ParseIntPipe, ParseUUIDPipe, Patch, Post, Put, Query } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { DeleteResult, UpdateResult } from 'typeorm';
 import {} from '../models/product.entity';
@@ -6,12 +6,13 @@ import { ProductPost } from '../models/product.interface';
 // import { ProductPost } from '../models/product.entity';
 //import {} from '../models/product.interface'
 import { ProductService } from '../services/product.service';
+import { CreateUserModel } from '../models/productModel';
 
 @Controller('feed')
 export class ProductController {
   constructor(private ProductService: ProductService) {}
   @Post()
-  create(@Body() productPost: ProductPost): Observable<ProductPost> {
+  create(@Body() productPost:CreateUserModel): Observable<ProductPost> {
     return this.ProductService.createPost(productPost);
   }
   @Get('/allData')
@@ -22,10 +23,14 @@ export class ProductController {
   findPostId(@Param('id',new ParseUUIDPipe({errorHttpStatusCode:HttpStatus.NOT_ACCEPTABLE})) id:number):Observable<ProductPost>{
     return this.ProductService.findById(id);
   }
+  @Get()
+  findPostQuery(@Query('id',new ParseUUIDPipe({errorHttpStatusCode:HttpStatus.NOT_ACCEPTABLE}))id:number):Observable<ProductPost>{
+    return this.ProductService.findByQuery(id)
+  }
   @Put(':id')
   updatePost(
     @Param('id',new ParseUUIDPipe({errorHttpStatusCode:HttpStatus.NOT_ACCEPTABLE})) id: number,
-    @Body() productPost: ProductPost,
+    @Body() productPost:CreateUserModel,
   ): Observable<UpdateResult> {
     return this.ProductService.updateData(id, productPost);
   }

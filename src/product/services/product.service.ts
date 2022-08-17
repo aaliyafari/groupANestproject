@@ -7,6 +7,7 @@ import { ProductPost } from '../models/product.interface';
 // import { ProductPostEntity } from '../model/post.entity';
 // import { ProductPost } from '../model/post.interface';
 //import {v4 as uuidv4} from 'uuid';
+import { CreateUserModel } from '../models/productModel';
 @Injectable()
 export class ProductService {
     constructor(
@@ -23,6 +24,10 @@ export class ProductService {
     }
     // FIND DATA BY ID:
     findById(id:number):Observable<ProductPost>{
+        return from(this.ProductPostRepository.findOneBy({id}))
+    }
+    // FIND DATA THROUGH EACH FIELD:
+    findByQuery(id:number):Observable<ProductPost>{
         return from(this.ProductPostRepository.findOneBy({id}))
     }
     // UPDATE THE WHOLE DATA:

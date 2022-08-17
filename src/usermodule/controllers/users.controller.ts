@@ -39,6 +39,12 @@ import {
 	     return this.userService.delete(id);
       }
       
-     
-
+      @Patch(':id')
+      updateUser(@Param('id') id: any, @Body() createUserDto) {
+        return this.userService.updateUser(+id, createUserDto);
+      }
+      @Put(':id')
+      async updatePost(@Param('id') id: any, @Body() post: CreateUserDto) {
+        return this.userService.updateUser(Number(id), post);
+      }
     }

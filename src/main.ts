@@ -10,15 +10,6 @@ async function bootstrap() {
     whitelist:true,
     forbidNonWhitelisted:true
   }))
-
-
-
-
-
-
-
-
- // app.setGlobalPrefix('product')
   await app.listen(3000);
 }
 bootstrap();
