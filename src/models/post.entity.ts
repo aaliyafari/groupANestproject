@@ -3,25 +3,25 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { EmpCrud } from '../models/postinterface';
 @Entity('emp_crud')
 export class EmpCrudEntity implements EmpCrud {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ default: '' })
+  @Column()
   firstname: string;
 
-  @Column({ default: '' })
+  @Column()
   lastname: string;
 
   // @Column({ type: 'bigint', default: null })
-  @Column({ type: 'int' })
+  @Column()
   mobile: number;
 
-  @Column({ type: 'int' })
+  @Column()
   salary: number;
 
-  @Column({ default: '' })
+  @Column()
   email: string;
 
-  @Column({ default: '' })
+  @Column()
   address: string;
 }
