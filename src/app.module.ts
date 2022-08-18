@@ -3,7 +3,10 @@ import { UsersModule } from './usermodule/users.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProductModule } from './product/product.module';
+import { EmpCrudModule } from './employeemodule/emp-crud.module';
 import entities from 'typeorm';
+import { StudentModule } from './student/student.module';
+import { BookModule } from './bookmodule/book.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -23,6 +26,9 @@ import entities from 'typeorm';
     }),
     UsersModule,
     ProductModule,
+    EmpCrudModule,
+    StudentModule,
+    BookModule,
   ],
   controllers: [],
   providers: [],
