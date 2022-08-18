@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
- import {
+import {
   Body,
   Controller,
   Post,
@@ -9,7 +9,6 @@
   Patch,
   Delete,
   HttpStatus,
-  ParseUUIDPipe,
 } from '@nestjs/common';
 import { EmpCrudService } from '../services/emp-crud.service';
 import { DeleteResult, UpdateResult } from 'typeorm';
@@ -47,10 +46,7 @@ export class EmpCrudController {
   // }
   @Patch(':id')
   updateSomeData(
-    @Param(
-      'id',
-      new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
-    )
+    @Param('id')
     id: number,
     @Body() post: EmpCrud,
   ): Observable<UpdateResult> {
