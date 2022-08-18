@@ -24,10 +24,9 @@ export enum ProductSize{
 }
 @Entity('product_post')
 
-
 export class ProductPostEntity {
   @PrimaryGeneratedColumn('uuid')
-  id: number;
+  id:string;
 
   @Column({default:''})
   productName: string;
