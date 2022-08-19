@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { from, Observable } from 'rxjs';
 import { DeleteResult, Repository, UpdateResult } from 'typeorm';
-import { ProductPostEntity } from '../models/product.entity';
+import { ProductData, ProductPostEntity } from '../models/product.entity';
 import { ProductPost } from '../models/product.interface';
 // import { ProductPostEntity } from '../model/post.entity';
 // import { ProductPost } from '../model/post.interface';
@@ -29,6 +29,14 @@ export class ProductService {
   // FIND DATA THROUGH EACH FIELD:
   findByQuery(id:string): Observable<ProductPost> {
     return from(this.ProductPostRepository.findOneBy({ id }));
+  }
+  // FIND DATA THROUGH PRICE FIELD:
+  findPriceByQuery(price:number):Observable<ProductPost>{
+    return from(this.ProductPostRepository.findOneBy({price}))
+  }
+  // FIND DATA THROUGH STOCK FIELD:
+  findStockByQuery(stock:ProductData):Observable<ProductPost>{
+    return from(this.ProductPostRepository.findOneBy({stock}))
   }
   // UPDATE THE WHOLE DATA:
   updateData(id:string, feedPost: ProductPost): Observable<UpdateResult> {
