@@ -31,5 +31,5 @@ export class StudentDataEntity {
   course_name: Cousre;
 
   @Column({ default: '' })
-  file: string;
+  image: string;
 }
