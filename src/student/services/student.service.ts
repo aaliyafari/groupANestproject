@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Injectable } from '@nestjs/common';
 import { isPort } from 'class-validator';
 import { StudentData } from '../models/student.interface';
@@ -21,7 +22,7 @@ export class StudentService {
   }
 
   // find students by uuid
-  findStudentsById(id: number): Observable<StudentDataEntity> {
+  findStudentsById(id: string): Observable<StudentDataEntity> {
     return from(this.StudentDataRepository.findOneBy({ id }));
   }
 
