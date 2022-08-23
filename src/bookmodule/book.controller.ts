@@ -8,12 +8,11 @@ import { UpdateBookDto } from './dto/update-book.dto';
 
 @Controller('book')
 export class BookController {
-  imagepath: string;
+  imagepath: any;
   constructor(private readonly bookService: BookService) {}
 
   @Post()
   create(@Body() createBookDto: CreateBookDto) {
-    CreateBookDto.image = this.imagepath;
     return this.bookService.create(createBookDto);
   }
   @Post('image')
