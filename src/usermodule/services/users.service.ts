@@ -15,6 +15,10 @@ export class UsersService {
         const newUser = this.userRepository.create(createUserDto);
         return this.userRepository.save(newUser);
       }
+      uploadFiles(createUserDto: CreateUserDto){
+        const newFile=this.userRepository.create(createUserDto)
+        return this.userRepository.save(newFile);
+      }
       getUsers() {
         return this.userRepository.find();
       }
@@ -41,5 +45,6 @@ export class UsersService {
       if (updatedAllUser) {
         return updatedAllUser;
       }
+      
   }
   }

@@ -26,4 +26,11 @@ export class User {
     default: '',
   })
   password: string;
+
+  @Column({
+    name:'Image',
+    default:''
+
+  })
+  image:string;
 }
