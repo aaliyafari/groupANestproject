@@ -12,22 +12,27 @@ import {
   HttpStatus,
   UseInterceptors,
   UploadedFile,
+  Res,
 } from '@nestjs/common';
 import { StudentDataEntity } from '../models/student.entity';
 import { StudentService } from '../services/student.service';
 import { Observable } from 'rxjs';
 import { DeleteResult, UpdateResult } from 'typeorm';
-// import { CreateStudentModel } from '../models/student.Model';
+import { CreateStudentModel } from '../models/student-Model.dto';
 import { StudentData } from '../models/student.interface';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { fileURLToPath } from 'url';
+import { ApiTags } from '@nestjs/swagger';
+import { extname } from 'path';
+import { diskStorage } from 'multer';
 //import { CreateUserModel } from 'src/product/models/productModel';
-
+@ApiTags('Student')
 @Controller('student')
 export class StudentController {
+  imagepath: string;
   constructor(private studentService: StudentService) {}
   @Post()
-  create(@Body() studentdata: StudentData): Observable<StudentData> {
+  create(@Body() studentdata: CreateStudentModel): Observable<StudentData> {
     return this.studentService.createStudentRecord(studentdata);
   }
   @Get('/allData')
@@ -53,6 +58,7 @@ export class StudentController {
     id: string,
     @Body() studentdata: StudentData,
   ): Observable<UpdateResult> {
+    console.log(studentdata);
     return this.studentService.updateStudentRecord(id, studentdata);
   }
   @Patch(':id')
@@ -77,34 +83,31 @@ export class StudentController {
   ): Observable<DeleteResult> {
     return this.studentService.deleteStudentRecord(id);
   }
-  // // upload files
-  // @Post('upload')
-  // @UseInterceptors(
-  //   FileInterceptor('file', {
-  //     dest: './uploads',
-  //   }),
-  // )
-  // uploadFile(@UploadedFile() file: Express.Multer.File) {
-  //   console.log('filename = ', file);
-  //   return 'name' + file.filename;
-  // }
 
-  // @Patch(':id')
-  // @UseInterceptors(
-  //   FileInterceptor('file', {
-  //     dest: './uploads',
-  //   }),
-  // )
-  // upload(
-  //   @Param('id') id: string,
-  //   // @UploadedFile() file: Express.Multer.File,
-  //   @File('file') file: string
-  // ): Observable<UpdateResult> {
-  //   return this.studentService.updateSomeData(id, file);
-  // }
-
-  // @Patch('showtImage/:id')
-  // showImage(@Param('id') id): Observable<DeleteResult> {
-  //   return;
-  // }
+  @Post('image')
+  @UseInterceptors(
+    FileInterceptor('image', {
+      storage: diskStorage({
+        destination: './images',
+        filename: (req, image, callback) => {
+          const uniqueSuffix =
+            Date.now() + '-' + Math.round(Math.random() * 1e9);
+          const ext = extname(image.originalname);
+          // const filename = `${image.originalname}-${uniqueSuffix}${ext}`;
+          const filename = `${uniqueSuffix}${ext}`;
+          callback(null, filename);
+        },
+      }),
+    }),
+  )
+  handleupload(@UploadedFile() image: Express.Multer.File) {
+    this.imagepath = image.path;
+    console.log('image', image);
+    console.log('path', image.path);
+    return 'file upload API';
+  }
+  @Get('showimage/:image')
+  seeUploadedFile(@Param('image') image, @Res() res) {
+    return res.sendFile(image, { root: './images' });
+  }
 }

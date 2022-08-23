@@ -8,7 +8,7 @@ import {
   Put,
   Patch,
   Delete,
-  HttpStatus,
+  HttpStatus, 
   UseInterceptors,
   UploadedFile,
   Res,
@@ -21,7 +21,7 @@ import { EmpCrudModule } from '../emp-crud.module';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
-@Controller('demo')
+@Controller('emp')
 export class EmpCrudController {
   imagepath: string;
   constructor(private empService: EmpCrudService) {}

@@ -23,4 +23,5 @@ export class CreateBookDto {
     @IsNotEmpty()
     @IsString()
     book_isbn: string;
+  static image: any;
 }
