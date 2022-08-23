@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   Get,
   Post,
@@ -35,7 +36,7 @@ export class StudentController {
     return this.studentService.createStudentRecord(studentdata);
   }
   @Get('/allData')
-  findPost(): Observable<StudentData[]> {
+  findPost(): Observable<StudentDataEntity[]> {
     return this.studentService.getAllStudents();
   }
   @Get(':id')

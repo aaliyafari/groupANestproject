@@ -5,7 +5,6 @@ import { IsEmail, IsInt, IsString } from 'class-validator';
 export class EmpCrud {
   @IsInt()
   id: number;
-  
   @IsString()
   firstname: string;
 
@@ -20,7 +19,7 @@ export class EmpCrud {
 
   @IsEmail()
   email: string;
-
+  
   @IsString()
   address: string;
 }
