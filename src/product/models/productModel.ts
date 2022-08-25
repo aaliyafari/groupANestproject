@@ -1,40 +1,48 @@
-import { IsDate, IsEnum, IsInt, IsNotEmpty, IsNumberString, IsString, MaxLength, maxLength, MinLength, } from "class-validator";
-import { Unique } from "typeorm";
-import { ProductData, ProductSize } from "./product.entity";
+import {
+  IsDate,
+  IsEnum,
+  IsInt,
+  IsNotEmpty,
+  IsNumberString,
+  IsString,
+  MaxLength,
+  maxLength,
+  MinLength,
+} from 'class-validator';
+import { Unique } from 'typeorm';
+import { ProductData, ProductSize } from './product.entity';
 
+export class CreateUserModel {
+  id: number;
+  // @IsNumberString()
+  // id:number;
 
-export class CreateUserModel{
+  @IsNotEmpty()
+  @IsString()
+  @MinLength(1)
+  @MaxLength(15)
+  productName: string;
 
-    // @IsNumberString()
-    // id:number;
+  @IsNotEmpty()
+  @IsInt()
+  price: number;
 
-    @IsNotEmpty()
-    @IsString()
-    @MinLength(1)
-    @MaxLength(15)
-    productName:string;
+  @IsNotEmpty()
+  @IsEnum(ProductData)
+  stock: ProductData;
 
-    @IsNotEmpty()
-    @IsInt()
-    price:number;
+  @IsNotEmpty()
+  @IsEnum(ProductSize)
+  size: ProductSize;
 
-    @IsNotEmpty()
-    @IsEnum(ProductData)
-    stock:ProductData;
+  // @IsNotEmpty()
+  // @IsString()
+  // manufacturingDate?:string;
 
-    @IsNotEmpty()
-    @IsEnum(ProductSize)
-    size:ProductSize;
+  // @IsNotEmpty()
+  // @IsString()
+  // expiryDate?:string;
 
-    @IsNotEmpty()
-    @IsString()
-    manufacturingDate?:string;
-
-    @IsNotEmpty()
-    @IsString()
-    expiryDate?:string;
-
-    @IsString()
-    image:string;
+  // @IsString()
+//   image: string;
 }
-
