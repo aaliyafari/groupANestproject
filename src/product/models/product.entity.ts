@@ -27,10 +27,10 @@ export enum ProductSize{
 
 export class ProductPostEntity {
   @PrimaryGeneratedColumn()
-  @IsNumberString()
+  // @IsNumberString()
   id:number;
 
-  @Column({unique:true})
+  @Column({default:''})
   productName: string;
 
   @Column({type:'bigint',default:null})
@@ -42,14 +42,14 @@ export class ProductPostEntity {
   @Column({ type:'enum',enum:ProductSize,default:null})
   size: ProductSize;
 
-  @Column({type:'date'})
-  manufacturingDate?:string;
+  // @Column({type:'date'})
+  // manufacturingDate?:string;
 
-  @Column({type:'date'})
-  expiryDate?:string;
+  // @Column({type:'date'})
+  // expiryDate?:string;
 
-  @Column({ default: '' })
-  image: string;
+  // @Column({ default: '' })
+  // image: string;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
