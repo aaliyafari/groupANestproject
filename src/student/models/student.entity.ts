@@ -30,6 +30,6 @@ export class StudentDataEntity {
   @Column({ type: 'enum', enum: Cousre, default: null })
   course_name: Cousre;
 
-  // @Column({ default: '' })
-  // image: string;
+  @Column({ default: '' })
+  image: string;
 }

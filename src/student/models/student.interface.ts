@@ -5,5 +5,5 @@ export class StudentData {
   mobile?: number;
   email?: string;
   address?: string;
-  // image?: string;
+  image?: string;
 }

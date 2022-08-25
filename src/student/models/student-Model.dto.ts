@@ -35,6 +35,6 @@ export class CreateStudentModel {
   @IsEnum(Cousre)
   course_name: Cousre;
 
-  // @IsString()
-  // image: string;
+  @IsString()
+  image: string;
 }
