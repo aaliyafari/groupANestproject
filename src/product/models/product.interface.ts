@@ -1,7 +1,9 @@
 export interface ProductPost{
-    id?:string;
+    id?:number;
     productName?:string;
     price?:number;
+    manufacturingDate?:string;
+    expiryDate?:string;
     // stock?:stri;
     // size?:string;
     image?:string;

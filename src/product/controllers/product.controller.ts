@@ -26,12 +26,13 @@ import { CreateUserModel } from '../models/productModel';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
+import { PatchProductModel } from '../models/productPatchModel';
 
 @Controller('feed')
 export class ProductController {
   imagepath: string;
   constructor(private ProductService: ProductService) {}
-  @Post()
+  @Post('/create')
   create(@Body() productPost: CreateUserModel): Observable<ProductPost> {
     return this.ProductService.createPost(productPost);
   }
@@ -42,10 +43,9 @@ export class ProductController {
   @Get(':id')
   findPostId(
     @Param(
-      'id',
-      new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
+      'id'
     )
-    id: string,
+    id:number,
   ): Observable<ProductPost> {
     return this.ProductService.findById(id);
   }
@@ -70,21 +70,19 @@ export class ProductController {
   @Get()
   findPostQuery(
     @Query(
-      'id',
-      new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
+      'id'
     )
-    id: string,
+    id:number,
   ): Observable<ProductPost> {
     return this.ProductService.findByQuery(id);
   }
   @Put(':id')
   updatePost(
     @Param(
-      'id',
-      new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
+      'id'
     )
-    id: string,
-    @Body() productPost: ProductPost,
+    id:number,
+    @Body() productPost:PatchProductModel,
   ): Observable<UpdateResult> {
     return this.ProductService.updateData(id, productPost);
   }
@@ -92,20 +90,18 @@ export class ProductController {
   updateSomeData(
     @Param(
       'id',
-      new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
     )
-    id: string,
-    @Body() feedPost: ProductPost,
+    id:number,
+    @Body() feedPost:PatchProductModel,
   ): Observable<UpdateResult> {
     return this.ProductService.updateSomeData(id, feedPost);
   }
   @Delete(':id')
   deletePost(
     @Param(
-      'id',
-      new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
+      'id'
     )
-    id: string,
+    id:number,
   ): Observable<DeleteResult> {
     return this.ProductService.DeleteData(id);
   }
