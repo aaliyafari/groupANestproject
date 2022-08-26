@@ -16,11 +16,11 @@ export class CreateBookDto {
     @IsInt()
     price: number;
 
-    @IsNotEmpty()
+   @IsNotEmpty()
     @IsString()
     book_image: string;
 
-    @IsNotEmpty()
+   @IsNotEmpty()
     @IsString()
     book_isbn: string;
 }

@@ -1,16 +1,19 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFile, Res } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFile, Res, Put } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
+import { Observable } from 'rxjs';
+import { UpdateResult } from 'typeorm';
 import { BookService } from './book.service';
 import { CreateBookDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
+import { BookEntity } from './entities/book.entity';
 
 @Controller('book')
 export class BookController {
-  imagepath: any;
+  imagepath: string;
   constructor(private readonly bookService: BookService) {}
-
+  
   @Post()
   create(@Body() createBookDto: CreateBookDto) {
     return this.bookService.create(createBookDto);
@@ -31,8 +34,8 @@ export class BookController {
   )
   handleupload(@UploadedFile() image:Express.Multer.File){
     this.imagepath = image.path;
-    console.log('image', image);
-    console.log('path',image.path);
+    //console.log('image', image);
+    //console.log('path',image.path);
     return "file upload API" + this.imagepath;
     // return this.bookService.handleupload(image);
   }
@@ -60,4 +63,12 @@ export class BookController {
   remove(@Param('id') id: string) {
     return this.bookService.deleteBook(+id);
   }
+  @Put(':id')
+  update1(
+    @Param('id') id: number,
+    @Body() userdto: BookEntity,
+  ): Observable<UpdateResult> {
+    return this.bookService.updatePutBook(id, userdto);
+  }
 }
+
