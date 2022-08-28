@@ -21,9 +21,9 @@ import { extname } from 'path';
 import { CreateUserDto } from '../dtos/CreateUser.dtos';
 import { UsersService } from '../services/users.service';
 import { diskStorage } from 'multer';
-import { fileURLToPath } from 'url';
-@Controller('users')
 @ApiTags('Users')
+@Controller('users')
+
 
 export class UsersController {
   imagepath: string;
@@ -78,7 +78,7 @@ export class UsersController {
     this.imagepath = image.path;
     console.log('image', image);
     console.log('path', image.path);
-    return 'file upload API';
+    return 'file upload API'+this.imagepath ;
   }
   @Get('showimage/:image')
   seeUploadedFile(@Param('image') image, @Res() res) {
