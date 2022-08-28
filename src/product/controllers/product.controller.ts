@@ -26,12 +26,13 @@ import { CreateUserModel } from '../models/productModel';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
+import { PatchProductModel } from '../models/productPatchModel';
 
 @Controller('feed')
 export class ProductController {
   imagepath: string;
   constructor(private ProductService: ProductService) {}
-  @Post()
+  @Post('/create')
   create(@Body() productPost: CreateUserModel): Observable<ProductPost> {
     return this.ProductService.createPost(productPost);
   }
@@ -41,11 +42,8 @@ export class ProductController {
   }
   @Get(':id')
   findPostId(
-    @Param(
-      'id',
-      new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
-    )
-    id: string,
+    @Param('id')
+    id: number,
   ): Observable<ProductPost> {
     return this.ProductService.findById(id);
   }
@@ -59,80 +57,66 @@ export class ProductController {
     @Param('stock') stock: ProductData,
   ): Observable<ProductPost> {
     return this.ProductService.findStockByQuery(stock);
-
-  }@Get('size/:size')
-  findPostSizeQuery(
-    @Param('size') size:ProductSize,
-  ): Observable<ProductPost> {
+  }
+  @Get('size/:size')
+  findPostSizeQuery(@Param('size') size: ProductSize): Observable<ProductPost> {
     return this.ProductService.findSizeByQuery(size);
   }
 
   @Get()
   findPostQuery(
-    @Query(
-      'id',
-      new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
-    )
-    id: string,
+    @Query('id')
+    id: number,
   ): Observable<ProductPost> {
     return this.ProductService.findByQuery(id);
   }
   @Put(':id')
   updatePost(
-    @Param(
-      'id',
-      new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
-    )
-    id: string,
-    @Body() productPost: ProductPost,
+    @Param('id')
+    id: number,
+    @Body() productPost: PatchProductModel,
   ): Observable<UpdateResult> {
     return this.ProductService.updateData(id, productPost);
   }
-  @Patch(':id')
+  @Patch('patch/:id')
   updateSomeData(
-    @Param(
-      'id',
-      new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
-    )
-    id: string,
-    @Body() feedPost: ProductPost,
+    @Param('id')
+    id: number,
+    @Body() feedPost: PatchProductModel,
   ): Observable<UpdateResult> {
     return this.ProductService.updateSomeData(id, feedPost);
   }
   @Delete(':id')
   deletePost(
-    @Param(
-      'id',
-      new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
-    )
-    id: string,
+    @Param('id')
+    id: number,
   ): Observable<DeleteResult> {
     return this.ProductService.DeleteData(id);
   }
-  @Post('image')
-  @UseInterceptors(
-    FileInterceptor('image', {
-      storage: diskStorage({
-        destination: './images',
-        filename: (req, image, callback) => {
-          const uniqueSuffix =
-            Date.now() + '-' + Math.round(Math.random() * 1e9);
-          const ext = extname(image.originalname);
-          // const filename = `${image.originalname}-${uniqueSuffix}${ext}`;
-          const filename = `${uniqueSuffix}${ext}`;
-          callback(null, filename);
-        },
-      }),
-    }),
-  )
-  handleupload(@UploadedFile() image: Express.Multer.File) {
-    this.imagepath = image.path;
-    console.log('image', image);
-    console.log('path', image.path);
-    return 'file upload API';
-  }
-  @Get('showimage/:image')
-  seeUploadedFile(@Param('image') image, @Res() res) {
-    return res.sendFile(image, { root: './images' });
-  }
+  // @Post('image')
+  // @UseInterceptors(
+  //   FileInterceptor('image', {
+  //     storage: diskStorage({
+  //       destination: './images',
+  //       filename: (req, image, callback) => {
+  //         const uniqueSuffix =
+  //           Date.now() + '-' + Math.round(Math.random() * 1e9);
+  //         const ext = extname(image.originalname);
+  //         // const filename = `${image.originalname}-${uniqueSuffix}${ext}`;
+  //         const filename = `${uniqueSuffix}${ext}`;
+  //         callback(null, filename);
+  //       },
+  //     }),
+  //   }),
+  // )
+  // handleupload(@UploadedFile() image: Express.Multer.File) {
+  //   this.imagepath = image.path;
+  //   console.log('image', image);
+  //   console.log('path', image.path);
+  //   return 'file upload API';
+  // }
+  // @Get('showimage/:image')
+  // seeUploadedFile(@Param('image') image, @Res() res) {
+  //   return res.sendFile(image, { root: './images' });
+  // }
 }

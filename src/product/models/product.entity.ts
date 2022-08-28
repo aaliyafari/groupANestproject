@@ -7,6 +7,7 @@
 //     image?:string;
 //     createdAt?:Date;
 // }
+import { IsNumberString } from 'class-validator';
 import { type } from 'os';
 import { timestamp } from 'rxjs';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
@@ -25,8 +26,9 @@ export enum ProductSize{
 @Entity('product_post')
 
 export class ProductPostEntity {
-  @PrimaryGeneratedColumn('uuid')
-  id:string;
+  @PrimaryGeneratedColumn()
+  // @IsNumberString()
+  id:number;
 
   @Column({default:''})
   productName: string;
@@ -40,8 +42,14 @@ export class ProductPostEntity {
   @Column({ type:'enum',enum:ProductSize,default:null})
   size: ProductSize;
 
-  @Column({ default: '' })
-  image: string;
+  // @Column({type:'date'})
+  // manufacturingDate?:string;
+
+  // @Column({type:'date'})
+  // expiryDate?:string;
+
+  // @Column({ default: '' })
+  // image: string;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
