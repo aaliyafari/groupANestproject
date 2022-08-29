@@ -1,11 +1,10 @@
-import { userInfo } from 'os';
 import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { User } from './user.entity';
+import {PostEntity} from './post.entity'
 @Entity()
 export class Address {
   @PrimaryGeneratedColumn({
-    type: 'bigint',
-    name: 'user_id',
+    name: 'id'
   })
   id: number;
   
@@ -27,9 +26,9 @@ export class Address {
     nullable: false,
     default: '',
   })
-  Country: string;
+  country: string;
 
-  @OneToOne(()=>User,(User: User)=>
-  User.address)
+  @OneToOne(()=>User,(user: User)=>
+  user.address)
 user:User
 }

@@ -1,12 +1,13 @@
-import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, OneToMany} from 'typeorm';
 import { UsersController } from '../controllers/users.controller';
 import { Address } from './address.entity';
-enum Gender{
+import { PostEntity } from './post.entity';
+export enum Gender{
   Male='Male',
   Female='Female',
   Other='Other'
 }
-enum UserRole{
+export enum UserRole{
   Author='Author',
   Publisher='Publisher',
   Viewer="Viewer"
@@ -15,7 +16,7 @@ enum UserRole{
 export class User {
   @PrimaryGeneratedColumn({
     type: 'bigint',
-    name: 'user_id',
+    name: 'id',
   })
   id: number;
   
@@ -68,11 +69,17 @@ role:UserRole;
 @Column({
 type:'enum',
 enum:Gender,
-default:Gender.Female})
+default:Gender.Female
+})
 gender:Gender;
 
-@OneToOne(()=>Address)
+@OneToOne(()=>Address,{
+  cascade:true
+})
 @JoinColumn()
-address:Address
+address:Address;
+
+@OneToMany( type => PostEntity , post => post.user)
+  post: PostEntity[];
    }
 

@@ -1,5 +1,5 @@
-import { IsEmail, IsNotEmpty, IsOptional, IsString, MaxLength, MinLength } from "class-validator";
-import internal from "stream";
+import { IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString, MaxLength, MinLength } from "class-validator";
+import { Gender, UserRole } from "../typeorm/user.entity";
 
 export class CreateUserDto {
   @IsOptional()
@@ -28,11 +28,13 @@ export class CreateUserDto {
   // @MaxLength(10)
   // mob_no: number;
 
-  // @IsOptional()
-  // UserRole: string;
+  @IsOptional()
+  @IsEnum(UserRole)
+  role: UserRole;
 
-  // @IsOptional()
-  // gender:Int32Array;
+  @IsOptional()
+  @IsEnum(Gender)
+  gender:Gender;
 
   //  @IsOptional()
   //  @IsNotEmpty()
