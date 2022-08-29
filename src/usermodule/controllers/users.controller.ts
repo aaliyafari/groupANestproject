@@ -84,5 +84,7 @@ export class UsersController {
   seeUploadedFile(@Param('image') image, @Res() res) {
     return res.sendFile(image, { root: './images' });
   }
+
+  
 }
 

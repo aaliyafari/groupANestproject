@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from '../typeorm';
+import {Address} from '../typeorm'
 import { Repository } from 'typeorm';
 import { CreateUserDto } from '../dtos/CreateUser.dtos';
 
@@ -10,9 +11,14 @@ export class UsersService {
     constructor(
         @InjectRepository(User) private readonly userRepository: Repository<User>,
       ) {}
-          
-      createUser(createUserDto: CreateUserDto) {
-        const newUser = this.userRepository.create(createUserDto);
+      async createUser(createUserDto: CreateUserDto): Promise<User> {
+        const newUser = this.userRepository.create({
+          name:createUserDto.name,
+          username:createUserDto.username,
+          user_email:createUserDto.user_email,
+          password:createUserDto.password,
+          gender:createUserDto.gender
+        });
         return this.userRepository.save(newUser);
       }
       // uploadFiles(createUserDto: CreateUserDto){

@@ -4,6 +4,7 @@ import {PostEntity} from './post.entity'
 @Entity()
 export class Address {
   @PrimaryGeneratedColumn({
+    type:'bigint',
     name: 'id'
   })
   id: number;

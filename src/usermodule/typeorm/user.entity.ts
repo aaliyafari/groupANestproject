@@ -59,11 +59,11 @@ export class User {
   // })
   // image:string;
 
-  @Column({
-    type:'enum',
-    enum:UserRole,
-  default:UserRole.Viewer})
-role:UserRole;
+//   @Column({
+//     type:'enum',
+//     enum:UserRole,
+//   default:UserRole.Viewer})
+// role:UserRole;
 
 
 @Column({
@@ -74,6 +74,7 @@ default:Gender.Female
 gender:Gender;
 
 @OneToOne(()=>Address,{
+  eager:true,
   cascade:true
 })
 @JoinColumn()

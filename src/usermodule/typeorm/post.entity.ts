@@ -14,13 +14,13 @@ export class PostEntity {
     name:'Post_title',
     default:'',
   })
-  Post_title:string;
+  post_title:string;
 
   @Column({
     name:'Post_Content',
     default:'',
   })
-  Post_Content:string;
+  post_Content:string;
 
   @Column({
     nullable:true
@@ -32,7 +32,7 @@ export class PostEntity {
   @ManyToOne(type => User, user => user.post)
   user: User;
 
-  @ManyToMany(type => GenreEntity)
+  @ManyToMany(type => GenreEntity,genre=>genre.post)
     @JoinTable()
     genreCategory: GenreEntity[];
 }

@@ -7,6 +7,7 @@ import { EmpCrudModule } from './employeemodule/emp-crud.module';
 import entities from 'typeorm';
 import { StudentModule } from './student/student.module';
 import { BookModule } from './bookmodule/book.module';
+import { AddressModule } from './usermodule/address.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -29,6 +30,7 @@ import { BookModule } from './bookmodule/book.module';
     EmpCrudModule,
     StudentModule,
     BookModule,
+    AddressModule
   ],
   controllers: [],
   providers: [],

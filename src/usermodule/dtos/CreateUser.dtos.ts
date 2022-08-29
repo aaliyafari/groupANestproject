@@ -28,9 +28,9 @@ export class CreateUserDto {
   // @MaxLength(10)
   // mob_no: number;
 
-  @IsOptional()
-  @IsEnum(UserRole)
-  role: UserRole;
+  // @IsOptional()
+  // @IsEnum(UserRole)
+  // role: UserRole;
 
   @IsOptional()
   @IsEnum(Gender)
