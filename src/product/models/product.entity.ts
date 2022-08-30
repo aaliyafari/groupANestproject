@@ -10,37 +10,38 @@
 import { IsNumberString } from 'class-validator';
 import { type } from 'os';
 import { timestamp } from 'rxjs';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import {v4 as uuidv4} from 'uuid';
+import { ProductPostCategory } from 'src/product/models/product-category.entity';
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { v4 as uuidv4 } from 'uuid';
 
-export enum ProductData{
-   AVAILABLE= "Available",
-   OUTOFSTOCK="OutOfStock"
-}
-export enum ProductSize{
-    SMALL="S",
-    MEDIUM="M",
-    LARGE="L",
-    EXTRALARGE="XL"
+export enum ProductData {
+  AVAILABLE = 'Available',
+  OUTOFSTOCK = 'OutOfStock',
 }
 @Entity('product_post')
-
 export class ProductPostEntity {
   @PrimaryGeneratedColumn()
   // @IsNumberString()
-  id:number;
+  id: number;
 
-  @Column({default:''})
+  @Column({ default: '' })
   productName: string;
 
-  @Column({type:'bigint',default:null})
-  price:number;
+  @Column({ type: 'bigint', default: null })
+  price: number;
 
-  @Column({ type:'enum',enum:ProductData,default:null})
-  stock:ProductData;
+  @Column({ type: 'enum', enum: ProductData, default: null })
+  stock: ProductData;
 
-  @Column({ type:'enum',enum:ProductSize,default:null})
-  size: ProductSize;
+  // @Column({ type:'enum',enum:ProductSize,default:null})
+  // size: ProductSize;
 
   // @Column({type:'date'})
   // manufacturingDate?:string;
@@ -50,6 +51,13 @@ export class ProductPostEntity {
 
   // @Column({ default: '' })
   // image: string;
+
+  @ManyToMany(
+    () => ProductPostCategory,
+    (productCategory: ProductPostCategory) => productCategory.productEntity,
+  )
+  @JoinTable({ name: 'product-post-category2' })
+  productCategory: ProductPostCategory[];
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;

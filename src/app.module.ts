@@ -11,6 +11,8 @@ import { AddressModule } from './usermodule/address.module';
 import { CourseModule } from './student/course.module';
 import { StudentCourseModule } from './student/student_course.module';
 import { BookCategoryModule } from './bookmodule/bookcategory.module';
+import { ProductCategoryModule } from './product/product-category.module';
+import { ProductDataModule } from './product/product-post-category.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -37,6 +39,8 @@ import { BookCategoryModule } from './bookmodule/bookcategory.module';
     BookCategoryModule,
     CourseModule,
     StudentCourseModule,
+    ProductCategoryModule,
+    ProductDataModule,
   ],
   controllers: [],
   providers: [],
