@@ -1,12 +1,15 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { StudentData } from '../models/student.interface';
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Contains, IsInt, Length, IsEmail, IsDate } from 'class-validator';
-// export enum Cousre {
-//   MCA = 'MCA',
-//   MBA = 'MBA',
-//   MTech = 'MTech',
-//   BCS = 'BCS',
-// }
+import { CourseEntity } from './course.entity';
+import { StudentCourseEntity } from './student_course.entity';
+
 @Entity('student_data')
 export class StudentDataEntity {
   @PrimaryGeneratedColumn('uuid')
@@ -27,9 +30,7 @@ export class StudentDataEntity {
   @Column({ default: '' })
   address: string;
 
-  // @Column({ type: 'enum', enum: Cousre, default: null })
-  // course_name: Cousre;
-
-  // @Column({ default: '' })
-  // image: string;
+  @ManyToMany(() => CourseEntity, (Course) => Course)
+  @JoinTable({ name: 'student_course' })
+  course: CourseEntity[];
 }
