@@ -8,6 +8,7 @@ import {
   IsString,
   Length,
 } from 'class-validator';
+// import { Cousre } from './student.entity';
 
 export class CreateStudentModel {
   @IsNotEmpty()
