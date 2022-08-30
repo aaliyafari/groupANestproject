@@ -1,6 +1,7 @@
 import { User } from "./user.entity";
 import { PostEntity } from "./post.entity";
-import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { GenrePost } from "./genrepost.entity";
 
 @Entity()
 export class GenreEntity{
@@ -15,6 +16,7 @@ export class GenreEntity{
     })
     name:string;
     
-    @ManyToMany(()=>PostEntity,(post:PostEntity)=>post.genreCategory)
-    post:PostEntity[];
+    @OneToMany((type)=>GenrePost,genrePosts=>genrePosts.genre,{
+        cascade:true})
+    genrePosts:GenrePost[];
 }

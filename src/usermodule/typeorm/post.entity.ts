@@ -1,7 +1,8 @@
-import { Column, Entity, OneToOne,ManyToOne,ManyToMany,PrimaryGeneratedColumn, JoinTable } from 'typeorm';
+import { Column, Entity, OneToOne,ManyToOne,ManyToMany,PrimaryGeneratedColumn, JoinTable, JoinColumn, OneToMany } from 'typeorm';
 import { User } from './user.entity';
 import { Address } from './address.entity';
 import { GenreEntity } from './genre.entity';
+import { GenrePost } from './genrepost.entity';
 @Entity()
 export class PostEntity {
   @PrimaryGeneratedColumn({
@@ -20,19 +21,23 @@ export class PostEntity {
     name:'Post_Content',
     default:'',
   })
-  post_Content:string;
+  post_content:string;
 
-  @Column({
-    nullable:true
+  // @Column({
+  //   nullable:true
+  // })
+  // category?:string;
+
+
+
+  @ManyToOne(type => User, user => user.post,{
+    eager:true
   })
-  category?:string;
-
-
-
-  @ManyToOne(type => User, user => user.post)
+  @JoinColumn({name:"id"})
   user: User;
 
-  @ManyToMany(type => GenreEntity,genre=>genre.post)
-    @JoinTable()
-    genreCategory: GenreEntity[];
+  @OneToMany(type => GenrePost,genrePosts=>genrePosts.post,{
+    cascade:true
+  })
+    genrePosts: GenrePost[];
 }

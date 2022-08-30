@@ -14,7 +14,7 @@ export class PostService {
       async createPOst(createPostDto: CreatePostDto): Promise<PostEntity> {
         const newPost = this.postRepository.create({
          post_title:createPostDto.post_title,
-         post_Content:createPostDto.post_content
+         post_content:createPostDto.post_content
 
         });
         return this.postRepository.save(newPost);
