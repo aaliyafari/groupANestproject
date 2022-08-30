@@ -58,7 +58,6 @@ export class StudentController {
     id: string,
     @Body() studentdata: StudentPatchData,
   ): Observable<UpdateResult> {
-    console.log(studentdata);
     return this.studentService.updateStudentRecord(id, studentdata);
   }
   @Patch(':id')
