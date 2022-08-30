@@ -1,48 +1,48 @@
 import {
-  IsDate,
   IsEnum,
   IsInt,
   IsNotEmpty,
-  IsNumberString,
+  IsOptional,
   IsString,
   MaxLength,
-  maxLength,
   MinLength,
 } from 'class-validator';
-import { Unique } from 'typeorm';
 import { ProductData, ProductSize } from './product.entity';
 
-export class CreateUserModel {
-  id: number;
-  // @IsNumberString()
-  // id:number;
-
+export class PatchProductModel {
   @IsNotEmpty()
   @IsString()
   @MinLength(1)
   @MaxLength(15)
-  productName: string;
+  @IsOptional()
+  productName?: string;
 
   @IsNotEmpty()
   @IsInt()
-  price: number;
+  @IsOptional()
+  price?: number;
 
   @IsNotEmpty()
   @IsEnum(ProductData)
-  stock: ProductData;
+  @IsOptional()
+  stock?: ProductData;
 
   @IsNotEmpty()
   @IsEnum(ProductSize)
-  size: ProductSize;
+  @IsOptional()
+  size?: ProductSize;
 
   // @IsNotEmpty()
   // @IsString()
+  // @IsOptional()
   // manufacturingDate?:string;
 
   // @IsNotEmpty()
   // @IsString()
+  // @IsOptional()
   // expiryDate?:string;
 
-  // @IsString()
-//   image: string;
+//   @IsString()
+//   @IsOptional()
+//   image?: string;
 }

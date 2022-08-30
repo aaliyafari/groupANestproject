@@ -1,40 +1,36 @@
 import {
   IsEmail,
   IsEnum,
-  IsInt,
   IsNotEmpty,
   IsNumber,
-  IsPhoneNumber,
+  IsOptional,
   IsString,
-  Length,
 } from 'class-validator';
-// import { Cousre } from './student.entity';
 
-export class CreateStudentModel {
+export class StudentPatchData {
   @IsNotEmpty()
   @IsString()
+  @IsOptional()
   firstname: string;
 
   @IsNotEmpty()
   @IsString()
+  @IsOptional()
   lastname: string;
 
   @IsNotEmpty()
   @IsNumber()
+  @IsOptional()
   mobile: number;
 
   @IsNotEmpty()
   @IsEmail()
+  @IsOptional()
   email: string;
 
   @IsNotEmpty()
   @IsString()
+  @IsOptional()
   address: string;
 
-  // @IsNotEmpty()
-  // @IsEnum(Cousre)
-  // course_name: Cousre;
-
-  // @IsString()
-  // image: string;
 }

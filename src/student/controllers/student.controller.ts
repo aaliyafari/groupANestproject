@@ -25,7 +25,7 @@ import { fileURLToPath } from 'url';
 import { ApiTags } from '@nestjs/swagger';
 import { extname } from 'path';
 import { diskStorage } from 'multer';
-//import { CreateUserModel } from 'src/product/models/productModel';
+import { StudentPatchData } from '../models/student.patchmodel';
 @ApiTags('Student')
 @Controller('student')
 export class StudentController {
@@ -56,9 +56,8 @@ export class StudentController {
       new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
     )
     id: string,
-    @Body() studentdata: StudentData,
+    @Body() studentdata: StudentPatchData,
   ): Observable<UpdateResult> {
-    console.log(studentdata);
     return this.studentService.updateStudentRecord(id, studentdata);
   }
   @Patch(':id')
@@ -68,7 +67,7 @@ export class StudentController {
       new ParseUUIDPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
     )
     id: string,
-    @Body() studentdata: StudentData,
+    @Body() studentdata: StudentPatchData,
   ): Observable<UpdateResult> {
     return this.studentService.updateSomeData(id, studentdata);
   }
@@ -93,7 +92,6 @@ export class StudentController {
           const uniqueSuffix =
             Date.now() + '-' + Math.round(Math.random() * 1e9);
           const ext = extname(image.originalname);
-          // const filename = `${image.originalname}-${uniqueSuffix}${ext}`;
           const filename = `${uniqueSuffix}${ext}`;
           callback(null, filename);
         },
