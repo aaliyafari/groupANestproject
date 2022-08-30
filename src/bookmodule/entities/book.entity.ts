@@ -1,27 +1,16 @@
-//import { IsNotEmpty } from "class-validator";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-@Entity('book_details')
+@Entity('book_detail_new')
 export class BookEntity {
     @PrimaryGeneratedColumn()
     book_id: number;
-    
     @Column({default: ''})
-    //@IsNotEmpty()
     book_name: string;
-
     @Column()
-    //@IsNotEmpty()
-    author: string;
-
+    book_author: string;
     @Column()
-    //@IsNotEmpty()
-    price: number;
-
+    book_price: number;
     @Column()
-    //@IsNotEmpty()
     book_image: string;
-
     @Column()
-    //@IsNotEmpty()
     book_isbn: string;
 }
