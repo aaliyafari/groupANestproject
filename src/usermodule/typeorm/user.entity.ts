@@ -1,13 +1,30 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, OneToMany} from 'typeorm';
+import { UsersController } from '../controllers/users.controller';
+import { Address } from './address.entity';
+import { PostEntity } from './post.entity';
+export enum Gender{
+  Male='Male',
+  Female='Female',
+  Other='Other'
+}
+export enum UserRole{
+  Author='Author',
+  Publisher='Publisher',
+  Viewer="Viewer"
+}
 @Entity()
 export class User {
   @PrimaryGeneratedColumn({
     type: 'bigint',
-    name: 'user_id',
+    name: 'id',
   })
   id: number;
-
+  
+  @Column({
+    name:'Name',
+    default:'',
+  })
+  name:string;
   @Column({
     nullable: false,
     default: '',
@@ -19,11 +36,51 @@ export class User {
     nullable: false,
     default: '',
   })
-  email: string;
+  user_email: string;
 
   @Column({
     nullable: false,
     default: '',
   })
   password: string;
-}
+
+  // @Column({
+  //   name:"mob_no",
+  //   nullable:false,
+  //   default:'',
+  // })
+  // mob_no: number;
+
+
+  // @Column({
+  //   name:'Image',
+  //   default:''
+
+  // })
+  // image:string;
+
+//   @Column({
+//     type:'enum',
+//     enum:UserRole,
+//   default:UserRole.Viewer})
+// role:UserRole;
+
+
+@Column({
+type:'enum',
+enum:Gender,
+default:Gender.Female
+})
+gender:Gender;
+
+@OneToOne(()=>Address,{
+  eager:true,
+  cascade:true
+})
+@JoinColumn()
+address:Address;
+
+@OneToMany( type => PostEntity , post => post.user)
+  post: PostEntity[];
+   }
+
