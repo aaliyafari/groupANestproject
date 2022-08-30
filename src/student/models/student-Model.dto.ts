@@ -8,7 +8,6 @@ import {
   IsString,
   Length,
 } from 'class-validator';
-import { Cousre } from './student.entity';
 
 export class CreateStudentModel {
   @IsNotEmpty()
@@ -31,9 +30,9 @@ export class CreateStudentModel {
   @IsString()
   address: string;
 
-  @IsNotEmpty()
-  @IsEnum(Cousre)
-  course_name: Cousre;
+  // @IsNotEmpty()
+  // @IsEnum(Cousre)
+  // course_name: Cousre;
 
   // @IsString()
   // image: string;

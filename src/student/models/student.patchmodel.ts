@@ -6,7 +6,6 @@ import {
   IsOptional,
   IsString,
 } from 'class-validator';
-import { Cousre } from './student.entity';
 
 export class StudentPatchData {
   @IsNotEmpty()
@@ -34,12 +33,4 @@ export class StudentPatchData {
   @IsOptional()
   address: string;
 
-  @IsNotEmpty()
-  @IsEnum(Cousre)
-  @IsOptional()
-  course_name: Cousre;
-
-  //   @IsString()
-  //   @IsOptional()
-  //   image: string;
 }
