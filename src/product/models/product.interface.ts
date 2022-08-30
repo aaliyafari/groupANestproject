@@ -6,6 +6,5 @@ export interface ProductPost{
     // expiryDate?:string;
     // stock?:stri;
     // size?:string;
-    // image?:string;
     createdAt?:Date;
 }

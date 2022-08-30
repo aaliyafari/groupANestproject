@@ -22,7 +22,7 @@ export class ProductPostCategory {
 
   @ManyToMany(
     () => ProductPostEntity,
-    (productEntity) => productEntity.productCategory,
+    (productEntity:ProductPostEntity) => productEntity.productCategory,
   )
   //@JoinTable()
   productEntity: ProductPostEntity;
