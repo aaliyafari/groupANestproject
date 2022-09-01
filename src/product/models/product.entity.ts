@@ -46,7 +46,7 @@ export class ProductPostEntity {
   // @Column({type:'date'})
   // manufacturingDate?:string;
 
-  productCategory: any;
+ 
   // @Column({type:'date'})
   // expiryDate?:string;
 
