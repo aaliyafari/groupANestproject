@@ -4,10 +4,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { EmpCrudModule } from './employeemodule/emp-crud.module';
 import { StudentModule } from './student/student.module';
 import { BookModule } from './bookmodule/book.module';
-import { RoleModule } from './usermodule/address.module';
 import { CourseModule } from './student/course.module';
 import { StudentCourseModule } from './student/student_course.module';
 import { BookCategoryModule } from './bookmodule/bookcategory.module';
+import { UsersModule } from './usermodule/users.module';
 //import { ProductCategoryModule } from './product/product-category.module';
 //import { ProductDataModule } from './product/product-post-category.module';
 @Module({
@@ -27,6 +27,7 @@ import { BookCategoryModule } from './bookmodule/bookcategory.module';
       }),
       inject: [ConfigService],
     }),
+    UsersModule,
     EmpCrudModule,
     StudentModule,
     BookModule,

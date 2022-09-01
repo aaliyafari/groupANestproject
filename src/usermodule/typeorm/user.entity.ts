@@ -1,7 +1,5 @@
 import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, OneToMany, ManyToMany, JoinTable} from 'typeorm';
 import { UsersController } from '../controllers/users.controller';
-import { Address } from './address.entity';
-import { PostEntity } from './post.entity';
 import { Role } from './role.entity';
 export enum Gender{
   Male='Male',
