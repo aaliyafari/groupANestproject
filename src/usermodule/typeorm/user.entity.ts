@@ -8,7 +8,6 @@ import {
   ManyToMany,
   JoinTable,
 } from 'typeorm';
-import { UsersController } from '../controllers/users.controller';
 import { Post } from '../post/entities/post.entity';
 // import { Role } from './role.entity';
 export enum Gender {
