@@ -1,15 +1,14 @@
 import { IsEmail, IsEnum, IsNotEmpty, IsOptional, IsString, MaxLength, MinLength } from "class-validator";
-import { Gender, UserRole } from "../typeorm/user.entity";
+import { Gender } from "../typeorm/user.entity";
 
 export class CreateUserDto {
+
   @IsOptional()
   @IsNotEmpty()
-  @MinLength(3)
   name:string;
   
   @IsOptional()
   @IsNotEmpty()
-  @MinLength(3)
   username: string;
 
   @IsOptional()
@@ -19,7 +18,6 @@ export class CreateUserDto {
 
   @IsOptional()
   @IsNotEmpty()
-  @MinLength(8)
   password: string;
 
   // @IsOptional()
@@ -35,6 +33,7 @@ export class CreateUserDto {
   @IsOptional()
   @IsEnum(Gender)
   gender:Gender;
+
 
   //  @IsOptional()
   //  @IsNotEmpty()
