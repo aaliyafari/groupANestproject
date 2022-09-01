@@ -21,7 +21,7 @@ import {
     }
   
     @Get(':id')
-    findPostsById(@Param('id', ParseIntPipe) id: number) {
-      return this.postService.findPostById(id);
+    getPostById(@Param('id', ParseIntPipe) id: number) {
+      return this.postService.getPostById(id);
     }
   }

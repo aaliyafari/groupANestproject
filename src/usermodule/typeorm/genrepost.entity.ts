@@ -8,10 +8,10 @@ export class GenrePost{
     id: number
 
     @ManyToOne(() => PostEntity, post => post.genrePosts)
-    @JoinColumn({name: 'post_id'})
+    @JoinColumn({name: 'postid'})
     post: PostEntity
 
     @ManyToOne(() => GenreEntity, genreEntity=> genreEntity.genrePosts)
-    @JoinColumn({name: 'category_id'})
-    genre: GenreEntity
+    @JoinColumn({name: 'categoryid'})
+    genreEntity: GenreEntity
 }

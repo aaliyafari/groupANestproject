@@ -1,7 +1,8 @@
-import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, OneToMany} from 'typeorm';
+import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn, OneToMany, ManyToMany, JoinTable} from 'typeorm';
 import { UsersController } from '../controllers/users.controller';
 import { Address } from './address.entity';
 import { PostEntity } from './post.entity';
+import { Role } from './role.entity';
 export enum Gender{
   Male='Male',
   Female='Female',
@@ -18,13 +19,14 @@ export class User {
     type: 'bigint',
     name: 'id',
   })
-  id: number;
+  user_id: number;
   
   @Column({
     name:'Name',
     default:'',
   })
   name:string;
+
   @Column({
     nullable: false,
     default: '',
@@ -66,21 +68,26 @@ export class User {
 // role:UserRole;
 
 
-@Column({
-type:'enum',
-enum:Gender,
-default:Gender.Female
-})
-gender:Gender;
+// @Column({
+// type:'enum',
+// enum:Gender,
+// default:Gender.Female
+// })
+// gender:Gender;
 
-@OneToOne(()=>Address,{
+
+
+// @OneToMany( type => PostEntity , post => post.user)
+//   post: PostEntity[];
+
+
+@ManyToMany((type) => Role, (category)=>category.users,{
+  cascade: true,
   eager:true,
-  cascade:true
+  
 })
-@JoinColumn()
-address:Address;
 
-@OneToMany( type => PostEntity , post => post.user)
-  post: PostEntity[];
-   }
+@JoinTable()
+roles: Role[];
+ }
 

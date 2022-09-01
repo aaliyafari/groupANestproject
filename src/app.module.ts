@@ -2,12 +2,11 @@ import { Module } from '@nestjs/common';
 import { UsersModule } from './usermodule/users.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ProductModule } from './product/product.module';
 import { EmpCrudModule } from './employeemodule/emp-crud.module';
 import entities from 'typeorm';
 import { StudentModule } from './student/student.module';
 import { BookModule } from './bookmodule/book.module';
-import { AddressModule } from './usermodule/address.module';
+import { RoleModule } from './usermodule/address.module';
 import { CourseModule } from './student/course.module';
 import { StudentCourseModule } from './student/student_course.module';
 import { BookCategoryModule } from './bookmodule/bookcategory.module';
@@ -29,11 +28,10 @@ import { BookCategoryModule } from './bookmodule/bookcategory.module';
       inject: [ConfigService],
     }),
     UsersModule,
-    ProductModule,
     EmpCrudModule,
     StudentModule,
     BookModule,
-    AddressModule,
+    RoleModule,
     BookCategoryModule,
     CourseModule,
     StudentCourseModule,

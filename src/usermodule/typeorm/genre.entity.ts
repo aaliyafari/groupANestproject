@@ -7,7 +7,7 @@ import { GenrePost } from "./genrepost.entity";
 export class GenreEntity{
     @PrimaryGeneratedColumn({
         type:'bigint',
-        name:'id'
+        name:'categoryid'
     })
     id:number;
 
@@ -16,7 +16,7 @@ export class GenreEntity{
     })
     name:string;
     
-    @OneToMany((type)=>GenrePost,genrePosts=>genrePosts.genre,{
+    @OneToMany((type)=>GenrePost,genrePosts=>genrePosts.genreEntity,{
         cascade:true})
     genrePosts:GenrePost[];
 }

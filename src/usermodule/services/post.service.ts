@@ -10,12 +10,12 @@ import { CreatePostDto } from '../dtos/CreatePost.dtos';
 export class PostService {
     constructor(
         @InjectRepository(PostEntity) private readonly postRepository: Repository<PostEntity>,
+        @InjectRepository(User) private readonly User: Repository<User>
       ) {}
-      async createPOst(createPostDto: CreatePostDto): Promise<PostEntity> {
+      async createPost(createPostDto: CreatePostDto): Promise<PostEntity> {
         const newPost = this.postRepository.create({
          post_title:createPostDto.post_title,
-         post_content:createPostDto.post_content
-
+         post_content:createPostDto.post_content,
         });
         return this.postRepository.save(newPost);
       }
@@ -23,7 +23,7 @@ export class PostService {
         return this.postRepository.find();
       }
 
-      findPostById(id: number) {
+      getPostById(id: number) {
         return this.postRepository.findOneBy({id})
       }
       delete(id: number){

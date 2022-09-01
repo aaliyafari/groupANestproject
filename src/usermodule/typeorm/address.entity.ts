@@ -29,7 +29,7 @@ export class Address {
   })
   country: string;
 
-  @OneToOne(()=>User,(user: User)=>
-  user.address)
-user:User
+//   @OneToOne(()=>User,(user: User)=>
+//   user.address)
+// user:User
 }

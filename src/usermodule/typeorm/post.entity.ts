@@ -7,7 +7,7 @@ import { GenrePost } from './genrepost.entity';
 export class PostEntity {
   @PrimaryGeneratedColumn({
     type: 'bigint',
-    name: 'id',
+    name: 'postid',
   })
   id: number;
   
@@ -30,11 +30,11 @@ export class PostEntity {
 
 
 
-  @ManyToOne(type => User, user => user.post,{
-    eager:true
-  })
-  @JoinColumn({name:"id"})
-  user: User;
+  // @ManyToOne(type => User, user => user.post,{
+  //   eager:true
+  // })
+  // @JoinColumn({name:"id"})
+  // user: User;
 
   @OneToMany(type => GenrePost,genrePosts=>genrePosts.post,{
     cascade:true
