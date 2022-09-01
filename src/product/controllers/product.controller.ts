@@ -17,7 +17,7 @@ import {
 } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { DeleteResult, UpdateResult } from 'typeorm';
-import { ProductData, ProductSize } from '../models/product.entity';
+import { ProductData } from '../models/product.entity';
 import { ProductPost } from '../models/product.interface';
 // import { ProductPost } from '../models/product.entity';
 //import {} from '../models/product.interface'
@@ -58,10 +58,10 @@ export class ProductController {
   ): Observable<ProductPost> {
     return this.ProductService.findStockByQuery(stock);
   }
-  @Get('size/:size')
-  findPostSizeQuery(@Param('size') size: ProductSize): Observable<ProductPost> {
-    return this.ProductService.findSizeByQuery(size);
-  }
+  // @Get('size/:size')
+  // findPostSizeQuery(@Param('size') size: ProductSize): Observable<ProductPost> {
+  //   return this.ProductService.findSizeByQuery(size);
+  // }
 
   @Get()
   findPostQuery(

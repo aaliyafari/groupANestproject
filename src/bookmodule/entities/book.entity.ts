@@ -1,27 +1,21 @@
-//import { IsNotEmpty } from "class-validator";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-@Entity('book_details')
+import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BookCategoryEntity } from "./bookcategory.entity";
+@Entity('book_detail_new')
 export class BookEntity {
     @PrimaryGeneratedColumn()
     book_id: number;
-    
     @Column({default: ''})
-    //@IsNotEmpty()
     book_name: string;
-
     @Column()
-    //@IsNotEmpty()
-    author: string;
-
+    book_author: string;
     @Column()
-    //@IsNotEmpty()
-    price: number;
-
+    book_price: number;
     @Column()
-    //@IsNotEmpty()
     book_image: string;
-
     @Column()
-    //@IsNotEmpty()
     book_isbn: string;
+
+    @ManyToMany(() => BookCategoryEntity)
+    // @JoinTable()
+    categories: BookCategoryEntity[]
 }

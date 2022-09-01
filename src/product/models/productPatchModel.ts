@@ -7,7 +7,7 @@ import {
   MaxLength,
   MinLength,
 } from 'class-validator';
-import { ProductData, ProductSize } from './product.entity';
+import { ProductData} from './product.entity';
 
 export class PatchProductModel {
   @IsNotEmpty()
@@ -27,10 +27,10 @@ export class PatchProductModel {
   @IsOptional()
   stock?: ProductData;
 
-  @IsNotEmpty()
-  @IsEnum(ProductSize)
-  @IsOptional()
-  size?: ProductSize;
+  // @IsNotEmpty()
+  // @IsEnum(ProductSize)
+  // @IsOptional()
+  // size?: ProductSize;
 
   // @IsNotEmpty()
   // @IsString()

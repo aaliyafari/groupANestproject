@@ -1,16 +1,19 @@
 /* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
-import { UsersModule } from './usermodule/users.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ProductModule } from './product/product.module';
 import { EmpCrudModule } from './employeemodule/emp-crud.module';
-import entities from 'typeorm';
 import { StudentModule } from './student/student.module';
 import { BookModule } from './bookmodule/book.module';
 import { CourseModule } from './student/course.module';
 import { StudentCourseModule } from './student/student_course.module';
+ 
 import { DepartmentModule } from './employeemodule/services/department.module';
+
+import { BookCategoryModule } from './bookmodule/bookcategory.module';
+import { UsersModule } from './usermodule/users.module';
+
+
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -20,7 +23,7 @@ import { DepartmentModule } from './employeemodule/services/department.module';
         type: 'postgres',
         host: configService.get('DB_HOST'),
         port: +configService.get<number>('DB_PORT'),
-        username: configService.get('DB_USERNAME'),
+       // username: configService.get('DB_USERNAME'),
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_NAME'),
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
@@ -29,10 +32,13 @@ import { DepartmentModule } from './employeemodule/services/department.module';
       inject: [ConfigService],
     }),
     UsersModule,
-    ProductModule,
     EmpCrudModule,
     StudentModule,
     BookModule,
+    EmpCrudModule,
+    StudentModule,
+    BookModule,
+    BookCategoryModule,
     CourseModule,
     StudentCourseModule,
     DepartmentModule,
