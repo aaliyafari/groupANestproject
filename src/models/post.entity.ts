@@ -1,8 +1,10 @@
 /* eslint-disable prettier/prettier */
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { EmpCrud } from '../models/postinterface';
-@Entity('emp_crud')
+import { DepartmentPostEntity } from './department.entity';
+@Entity('emp_crud1')
 export class EmpCrudEntity implements EmpCrud {
+  department: string;
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -23,5 +25,12 @@ export class EmpCrudEntity implements EmpCrud {
   email: string;
 
   @Column()
-  address: string;
+  address: string;  
+
+
+
+  @ManyToMany(()=>DepartmentPostEntity,(post)=>post.department)
+  @JoinTable()
+  post:DepartmentPostEntity[];
+
 }

@@ -1,3 +1,11 @@
 {
-  "cSpell.words": ["handleupload", "imagepath"]
+  "cSpell.words": [
+    "bookcategory",
+    "bookmodule",
+    "handleupload",
+    "imagepath",
+    "nestjs",
+    "typeorm",
+    "usermodule"
+  ]
 }

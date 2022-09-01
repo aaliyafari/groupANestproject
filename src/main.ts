@@ -2,7 +2,7 @@
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { getEnabledCategories } from 'trace_events';
+
 import { AppModule } from './app.module';
 
 async function bootstrap() {

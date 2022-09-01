@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { ProductPostEntity } from 'src/product/models/product.entity';
 import {
   Column,

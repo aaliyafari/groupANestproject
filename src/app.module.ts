@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -6,10 +7,13 @@ import { StudentModule } from './student/student.module';
 import { BookModule } from './bookmodule/book.module';
 import { CourseModule } from './student/course.module';
 import { StudentCourseModule } from './student/student_course.module';
+ 
+import { DepartmentModule } from './employeemodule/services/department.module';
+
 import { BookCategoryModule } from './bookmodule/bookcategory.module';
 import { UsersModule } from './usermodule/users.module';
-//import { ProductCategoryModule } from './product/product-category.module';
-//import { ProductDataModule } from './product/product-post-category.module';
+
+
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -37,6 +41,7 @@ import { UsersModule } from './usermodule/users.module';
     BookCategoryModule,
     CourseModule,
     StudentCourseModule,
+    DepartmentModule,
   ],
   controllers: [],
   providers: [],
