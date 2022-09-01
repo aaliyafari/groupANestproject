@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
 import { UsersModule } from './usermodule/users.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
@@ -9,6 +10,7 @@ import { StudentModule } from './student/student.module';
 import { BookModule } from './bookmodule/book.module';
 import { CourseModule } from './student/course.module';
 import { StudentCourseModule } from './student/student_course.module';
+import { DepartmentModule } from './employeemodule/services/department.module';
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -33,6 +35,7 @@ import { StudentCourseModule } from './student/student_course.module';
     BookModule,
     CourseModule,
     StudentCourseModule,
+    DepartmentModule,
   ],
   controllers: [],
   providers: [],

@@ -11,7 +11,7 @@ import { EmpCrud } from 'src/models/postinterface';
 export class EmpCrudService {
   constructor(
     @InjectRepository(EmpCrudEntity)
-    private readonly empCrudRepository: Repository<EmpCrudEntity>,
+    private readonly empCrudRepository: Repository<EmpCrudEntity>
   ) {}
   createPost(empPost: EmpCrud): Observable<EmpCrud> {
     return from(this.empCrudRepository.save(empPost));

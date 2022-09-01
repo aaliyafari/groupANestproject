@@ -8,7 +8,6 @@ import {
   Put,
   Patch,
   Delete,
-  HttpStatus, 
   UseInterceptors,
   UploadedFile,
   Res,
@@ -17,7 +16,6 @@ import { EmpCrudService } from '../services/emp-crud.service';
 import { DeleteResult, UpdateResult } from 'typeorm';
 import { EmpCrud } from 'src/models/postinterface';
 import { Observable } from 'rxjs/internal/Observable';
-import { EmpCrudModule } from '../emp-crud.module';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
@@ -27,6 +25,7 @@ export class EmpCrudController {
   constructor(private empService: EmpCrudService) {}
   @Post()
   create(@Body() post: EmpCrud): Observable<EmpCrud> {
+    
     return this.empService.createPost(post);
   }
 
@@ -47,10 +46,7 @@ export class EmpCrudController {
     return this.empService.updateEmployeeRecord(id, post);
   }
 
-  // @Patch(':id')
-  // updatePatch(id: number, @Body() post: EmpCrud): Observable<UpdateResult> {
-  //   return this.empService.updatePatchPost(id, post);
-  // }
+ 
   @Patch(':id')
   updateSomeData(
     @Param('id')
