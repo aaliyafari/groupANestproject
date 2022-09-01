@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { from, Observable } from 'rxjs';
 import { DeleteResult, Repository, UpdateResult } from 'typeorm';
+import { ProductAndCategoryData } from '../models/product-post-category.entity';
 import { ProductData, ProductPostEntity } from '../models/product.entity';
 import { ProductPost } from '../models/product.interface';
 // import { ProductPostEntity } from '../model/post.entity';
@@ -14,6 +15,8 @@ export class ProductService {
     @InjectRepository(ProductPostEntity)
     private readonly ProductPostRepository: Repository<ProductPostEntity>,
   ) {}
+
+
   // CREATE DATA:
   createPost(feedPost: ProductPost): Observable<ProductPost> {
     return from(this.ProductPostRepository.save(feedPost));

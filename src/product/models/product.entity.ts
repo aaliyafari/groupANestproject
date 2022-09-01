@@ -56,7 +56,7 @@ export class ProductPostEntity {
     () => ProductPostCategory,
     (productCategory: ProductPostCategory) => productCategory.productEntity,
   )
-  @JoinTable({ name: 'product-post-category2' })
+  @JoinTable({name:'productpostcategory'})
   productCategory: ProductPostCategory[];
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
