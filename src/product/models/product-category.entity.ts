@@ -20,10 +20,10 @@ export class ProductPostCategory {
   @Column({default:''})
   size:string;
 
-  @ManyToMany(
-    () => ProductPostEntity,
-    (productEntity) => productEntity.productCategory,
-  )
+  // @ManyToMany(
+  //   () => ProductPostEntity,
+  //   (productEntity) => productEntity.productCategory,
+  // )
   //@JoinTable()
   productEntity: ProductPostEntity;
 

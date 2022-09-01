@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from "typeorm";
+import { BookCategoryEntity } from "./bookcategory.entity";
 @Entity('book_detail_new')
 export class BookEntity {
     @PrimaryGeneratedColumn()
@@ -13,4 +14,8 @@ export class BookEntity {
     book_image: string;
     @Column()
     book_isbn: string;
+
+    @ManyToMany(() => BookCategoryEntity)
+    // @JoinTable()
+    categories: BookCategoryEntity[]
 }
