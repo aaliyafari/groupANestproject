@@ -5,7 +5,6 @@ import {
   Get,
   Param,
   ParseIntPipe,
-
   Patch,
   Post,
   Put,
@@ -23,8 +22,7 @@ import { UsersService } from '../services/users.service';
 import { diskStorage } from 'multer';
 import { fileURLToPath } from 'url';
 @Controller('users')
-@ApiTags('Users')
-
+// @ApiTags('Users')
 export class UsersController {
   imagepath: string;
   constructor(private readonly userService: UsersService) {}

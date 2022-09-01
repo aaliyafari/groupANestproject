@@ -31,7 +31,6 @@ import { UsersModule } from './usermodule/users.module';
     EmpCrudModule,
     StudentModule,
     BookModule,
-    RoleModule,
     EmpCrudModule,
     StudentModule,
     BookModule,
