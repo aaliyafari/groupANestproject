@@ -10,24 +10,20 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-@Entity('product_category1')
-export class ProductPostCategory {
-  @PrimaryGeneratedColumn()
-  id: number;
+@Entity({name:'size'})
+export class product_Categories {
+    @PrimaryGeneratedColumn()
+    id: number
 
-  // @Column({default:''})
-  // productSpecification:string;
+    @Column()
+    size: string
+    //user: any
+    @ManyToMany(() => ProductPostEntity)
+    @JoinTable()
+    product: ProductPostEntity[]
 
-  @Column({default:''})
-  size:string;
-
-  @ManyToMany(
-    () => ProductPostEntity,
-    (productEntity:ProductPostEntity) => productEntity.productCategory,
-  )
-  //@JoinTable()
-  productEntity: ProductPostEntity;
-
-  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
-  createdAt: Date;
+    // @ManyToOne(() => many, (photo) => many.user)
+    // photos: Photo[]
+    // @ManyToOne(() => ProductPostEntity, (post: ProductPostEntity) => post.products)
+    // post: ProductPostEntity
 }

@@ -1,21 +1,34 @@
 import { Body, Controller, Get, Post } from "@nestjs/common";
 import { Observable } from "rxjs";
-import { ProductPostCategoryInterface } from "../models/product-category.interface";
-import { ProductAndCategoryData } from "../models/product-post-category.entity";
-import { ProductPostCategoryService } from "../services/product-post-category.service";
+import { categories_interface } from "../models/product-post-category.interface";
+import { categories_model } from "../models/product-post-category.model";
+import { categories_service } from "../services/product-post-category.service";
+// import { ProductPostCategoryInterface } from "../models/product-category.interface";
+// import { ProductAndCategoryData } from "../models/product-post-category.entity";
+// import { ProductPostCategoryService } from "../services/product-post-category.service";
 
 
-@Controller('postCategory')
-export class ProductPostCategoryController{
-    constructor(private ProductPostCategory:ProductPostCategoryService) {}
-    @Post('/create')
-    create(
-      @Body() productPost:ProductAndCategoryData,
-    ): Observable<ProductPostCategoryInterface> {
-      return this.ProductPostCategory.createPostCategories(productPost)
+@Controller("categories")
+export class categoriesController {
+    constructor(private categories: categories_service) { }
+    @Get()
+    hello() {
+        return "hiii amit"
     }
-    @Get('/allData')
-    findProductCategory():Observable<ProductPostCategoryInterface[]>{
-      return this.ProductPostCategory.findAllData()
-    } 
+    @Post()
+
+    createCategories(@Body() product_Categories: categories_model): Observable<categories_interface> {
+        //return this.categories.createCategories(product_Categories)
+        return this.categories.createCategories(product_Categories)
+    }
+
+    @Get("/allData")
+    allData(): Observable<categories_interface[]> {
+
+        return this.categories.findAllData()
+    }
+
+
+
+
 }

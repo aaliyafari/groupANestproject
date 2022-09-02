@@ -1,7 +1,4 @@
-import { IsNotEmpty, IsString } from "class-validator";
+export class product_model{
+    size:string
 
-export class ProductCategoryModel{
-    @IsNotEmpty()
-    @IsString()
-    size:string;
 }
