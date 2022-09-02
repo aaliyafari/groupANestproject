@@ -3,32 +3,27 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { from, Observable } from 'rxjs';
 import { ProductPostEntity } from 'src/product/models/product.entity';
 import { DeleteResult, Repository, UpdateResult } from 'typeorm';
-import { ProductCategoryController } from '../controllers/product-category.controller';
-import { ProductPostCategory } from '../models/product-category.entity';
-import { ProductPostCategoryInterface } from '../models/product-category.interface';
+//import { ProductCategoryController } from '../controllers/product-category.controller';
+import { product_Categories } from '../models/product-category.entity';
+import { productOneToMany } from '../models/product-category.interface';
+// import { ProductPostCategory } from '../models/product-category.entity';
+// import { ProductPostCategoryInterface } from '../models/product-category.interface';
 
 @Injectable()
-export class ProductCategoryService {
-  constructor(
-    @InjectRepository(ProductPostCategory)
-    private readonly ProductCategoryRepository: Repository<ProductPostCategory>,
-  ) {}
-  // CREATE PRODUCT-CATEGORY DATA:
-  createProductCategory(
-    category:ProductPostCategoryInterface,
-  ): Observable<ProductPostCategoryInterface> {
-    return from(this.ProductCategoryRepository.save(category));
-  }
-  getProductCategory():Observable<ProductPostCategoryInterface[]>{
-    return from(this.ProductCategoryRepository.find())
-  }
-  getProductCategoryById(id:number):Observable<ProductPostCategoryInterface>{
-    return from(this.ProductCategoryRepository.findOneBy({id}))
-  }
-  updateProductCategory(id: number, feedPost:ProductPostCategoryInterface):Observable<UpdateResult>{
-    return from(this.ProductCategoryRepository.update(id,feedPost))
-  }
-  deleteProductCategory(id:number):Observable<DeleteResult>{
-    return from(this.ProductCategoryRepository.delete(id))
-  }
+export class oneToMany_service {
+    constructor(
+        @InjectRepository(product_Categories)
+        private readonly oneToManyRepository: Repository<product_Categories>
+
+    ) { }
+    createproductsize(productsize: productOneToMany): Observable<productOneToMany> {
+        return from(this.oneToManyRepository.save(productsize))
+    }
+
+
+    findAllData(): Observable<product_Categories[]> {
+        return from(this.oneToManyRepository.find())
+
+    }
+
 }

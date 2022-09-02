@@ -1,14 +1,11 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity('productpostcategory')
-
-export class ProductAndCategoryData {
+@Entity('categories')
+export class categories {
   @PrimaryGeneratedColumn()
-  id:number;
-
+  id: number;
   @Column()
-  productPostId: number;
-
+  productPostId: string;
   @Column()
-  productCategory1Id: number;
+  productCategoryId: string;
 }

@@ -13,14 +13,8 @@ import { Unique } from 'typeorm';
 import { ProductData} from './product.entity';
 
 export class CreateUserModel {
-  id: number;
-  // @IsNumberString()
-  // id:number;
-
   @IsNotEmpty()
   @IsString()
-  @MinLength(1)
-  @MaxLength(15)
   productName: string;
 
   @IsNotEmpty()
@@ -32,17 +26,10 @@ export class CreateUserModel {
   stock: ProductData;
 
   // @IsNotEmpty()
-  // @IsEnum(ProductSize)
+  // //@IsEnum(ProductSize)
   // size: ProductSize;
 
-  // @IsNotEmpty()
-  // @IsString()
-  // manufacturingDate?:string;
-
-  // @IsNotEmpty()
-  // @IsString()
-  // expiryDate?:string;
-
-  // @IsString()
-//   image: string;
+  //@IsNotEmpty()
+  image: string;
 }
+
